@@ -1,0 +1,31 @@
+
+  div{
+    width:inherit;
+  height:inherit;
+  background-color:rgba(50,65,70,1);
+  display:flex;
+  flex-direction:column;
+}
+ul {
+    list-style: none;
+}
+li {
+    max-width: 100%;
+    font-weight: 200;
+    margin: 52px;
+    border-radius: 69px;
+      text-align: center;
+}
+li > a {
+  color: white;
+  font-size: 63px;
+  text-decoration: none;
+
+}
+li:nth-child(1) {
+    background: rgba(209,164,125,0.7);
+
+}
+li:nth-of-type(2) {
+    background: rgba(150,139,117,1);
+}

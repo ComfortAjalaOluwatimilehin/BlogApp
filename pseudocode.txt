@@ -1,0 +1,12 @@
+http://paperjs.org/
+http://fabricjs.com/
+https://threejs.org/
+http://bouncejs.com/
+https://greensock.com/gsap
+http://anijs.github.io/
+
+REDUX handles Frontend Authentication
+
+
+
+#use Geolocation to validate the user's phone number
