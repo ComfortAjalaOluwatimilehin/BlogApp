@@ -1,12 +1,10 @@
-http://paperjs.org/
-http://fabricjs.com/
-https://threejs.org/
-http://bouncejs.com/
-https://greensock.com/gsap
-http://anijs.github.io/
 
-REDUX handles Frontend Authentication
+-Store to User object is available
+-Connect Redux to React and React-Router (1)
 
 
-
-#use Geolocation to validate the user's phone number
+Story line
+-Pass User object to redux -> updates the store --> store signals the profile component -> renders component -> displays user data
+-user makes request in the profile sub pages e.g. /profile/dashboard, /profile/followers, /profile/updateProfile; need authorization strategy
+-when user logs out --> deserialize user session; signal redux; update store; redux signals router to render Profile view
+-

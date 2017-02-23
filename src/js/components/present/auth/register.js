@@ -1,9 +1,8 @@
 import React, {PropTypes} from "react"
 import {Link} from "react-router"
 import {connect} from "react-redux"
-import {validate,cleanNodes} from "./helpers"
+import {validate,cleanNodes} from "./validation"
 import axios from "axios"
-require("./style")
 const Register = ()=>{
   let firstname, lastname, username, password, password_again, number, robot;
   let errors={value:false}
@@ -38,11 +37,11 @@ const Register = ()=>{
                       validate(e.target.value, e.target.name)
                   }}/>
 
-                <label><span>I am not A Robot</span>
+                <label id="robotRow"><span>I am not A Robot</span>
                   <input type="checkbox" name="robot"  ref={node=>{robot = node}} onChange={(e)=>{
                       validate(e.target.checked, e.target.name)
                   }} />
-                </label>
+                </label >
                   <input type="submit" value="register" className="card" onClick={e=>{
                       e.preventDefault()
                       if(password.value !== password_again.value || !robot.checked ){
@@ -56,7 +55,7 @@ const Register = ()=>{
                           number:number.value
                         }
 
-                          axios.post("/api/newuser",user).then(function(user){
+                          axios.post("/register",user).then(function(user){
                               console.log(user)
                               document.getElementById("errorMessage").innerHTML = ""
                           })
