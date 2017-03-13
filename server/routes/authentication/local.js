@@ -36,9 +36,14 @@ module.exports = function(passport){
                                       return done(null,false, {message:"User already exists"})
 
                                     var newuser = new User()
-
+                                      //console.log(req.body)
                                     newuser.local.username = username
                                     newuser.local.password = newuser.hashpassword(password)
+                                    newuser.local.firstname = req.body.firstname
+                                    newuser.local.lastname = req.body.lastname
+                                    newuser.local.number = req.body.number
+
+
 
                                     newuser.save(function(err){
                                         if(err) return err

@@ -1,10 +1,9 @@
 
--Store to User object is available
--Connect Redux to React and React-Router (1)
 
-
-Story line
--Pass User object to redux -> updates the store --> store signals the profile component -> renders component -> displays user data
--user makes request in the profile sub pages e.g. /profile/dashboard, /profile/followers, /profile/updateProfile; need authorization strategy
--when user logs out --> deserialize user session; signal redux; update store; redux signals router to render Profile view
--
+TASKS
+-PERSIST USER -> PASSPORT; USE EXPIRATION DAT/TIME OR USER LOGS OUT
+-STYLE USER PROFILE
+-ADD USER ROLES
+-DESIGN USER DASHBOARD
+-DESIGN USER ADD POST; SHOW POSTS;
+-ADD FOLLOWERS; REMOVE FOLLOWERS; LIKE POST; DELETE POST; UNLIKE POST;

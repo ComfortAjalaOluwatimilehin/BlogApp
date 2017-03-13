@@ -6,6 +6,7 @@ import axios from "axios"
 const Register = ()=>{
   let firstname, lastname, username, password, password_again, number, robot;
   let errors={value:false}
+
     return (
 
       <div>
@@ -55,8 +56,9 @@ const Register = ()=>{
                           number:number.value
                         }
 
-                          axios.post("/register",user).then(function(user){
-                              console.log(user)
+                          axios.post("/register",user).then(function(response){
+
+                              window.location.href ="/profile/" + response.data.user._id
                               document.getElementById("errorMessage").innerHTML = ""
                           })
                           .catch(error=>{

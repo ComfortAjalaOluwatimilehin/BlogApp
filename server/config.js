@@ -10,8 +10,10 @@ import routes from '../src/js/routes';
 import NotFoundPage from "../src/js/components/present/notfound/nopage"
 import userReducer from "../src/js/reducers/user"
 import {Provider} from "react-redux"
-import {createStore} from "redux"
+import {createStore, applyMiddleware} from "redux"
+import thunkMiddleware from 'redux-thunk'
 
+var loginMiddleWare = require("./routes/api/callbacks").isLoggedIn
 
 module.exports = function(app){
   //set engine
@@ -20,9 +22,14 @@ module.exports = function(app){
   app.set("views", path.join(__dirname,"views"));
 
 
+app.use("/profile",loginMiddleWare, function(req,res,next){
+      console.log("we are checking the profile")
+      next()
+})
 
   app.get("*",  function(req,res){
-
+console.log(req.url)
+console.log("this callback should happen after the function above ")
 
 
               //match req url to components
@@ -39,9 +46,9 @@ module.exports = function(app){
 
                         let markup;
 
-                        const store = createStore(userReducer) //create the store for the Provider
+                        const store = createStore(userReducer, applyMiddleware(thunkMiddleware)) //create the store for the Provider
                         //router has the user object
-                      
+
                         if(renderProps){
 
                               markup = renderToString(
@@ -53,11 +60,17 @@ module.exports = function(app){
 
                         else{
 
-                                markup = renderToString(<NotFoundPage />)
-                                res.status(400)
+                                markup = renderToString(
+                                  <Provider store={store}>
+                                  <NotFoundPage />
+                                    </Provider>
+                                )
+                                //res.status(400)
                         }
+                        console.log("I am markup")
 
-                        return res.render("index", {markup, state:JSON.stringify(store.getState())})
+                       res.render("index", {markup, state:JSON.stringify( store.getState() ) })
               })
+
   })
 }

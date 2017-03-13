@@ -11,7 +11,7 @@ const routes =(
               <IndexRoute  component={Home} />
               <Route path="/register" component={Register}/>
               <Route path="/login" component={Login}/>
-              <Route path="/profile/:id" component={Profile}/>
+              <Route path="/profile/:userid" component={Profile}/>
         </Route>
   )
 

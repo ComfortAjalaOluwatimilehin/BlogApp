@@ -4,11 +4,12 @@ Schema = mongoose.Schema,
 
 var user = new Schema({
     local:{
+      fullname:{type:String},
       firstname:{type:String},
       lastname:{type:String},
       password:{type:String},
       number:{type:String},
-      username:{type:String},
+      username:{type:String, unique:true},
       registerationDate:{type:Date, default:Date.now}
     },
     facebook:{
@@ -30,7 +31,12 @@ var user = new Schema({
       name:{type:String}
     }
 })
-
+user.pre("save", function(next){
+          var newperson = this
+            this.fullname = newperson.firstname + " " + newperson.lastname;
+            console.log(this.fullname)
+        next()
+})
 user.methods.hashpassword = function(password){
       return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
 }

@@ -21,6 +21,7 @@ const Login = ()=>{
                       var login = {username:username.value, password:password.value}
                       axios.post("/login",login)
                      .then(response=>{
+                         window.location.href ="/profile/" + response.data.user._id
                           console.log(response)
                       })
                       .catch(error=>{
